@@ -1,0 +1,20 @@
+---
+const {
+  sectionNumber,
+  sectionLabel,
+  eyebrow,
+  highlight,
+  suffix,
+  text,
+} = Astro.props;
+---
+
+<section class="statement" id="waarom" aria-labelledby="statement-title">
+  <div class="section-label">{sectionNumber} <span>{sectionLabel}</span></div>
+  <div class="statement__content">
+    <p class="eyebrow eyebrow--coral">{eyebrow}</p>
+    <h2 id="statement-title">...en er zijn <span>{highlight}</span> {suffix}</h2>
+    <p>{text}</p>
+  </div>
+  <div class="tape" aria-hidden="true">WAARSCHUWING: VEEL LIEFDE</div>
+</section>

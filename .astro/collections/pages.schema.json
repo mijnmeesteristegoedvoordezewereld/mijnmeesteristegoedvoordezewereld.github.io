@@ -1,0 +1,114 @@
+{
+  "$ref": "#/definitions/pages",
+  "definitions": {
+    "pages": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "heroEyebrow": {
+          "type": "string"
+        },
+        "heroTitleLine1": {
+          "type": "string"
+        },
+        "heroTitleEm": {
+          "type": "string"
+        },
+        "heroTitleLine2": {
+          "type": "string"
+        },
+        "heroTitleLine3": {
+          "type": "string"
+        },
+        "heroIntro": {
+          "type": "string"
+        },
+        "primaryCta": {
+          "type": "string"
+        },
+        "secondaryCta": {
+          "type": "string"
+        },
+        "secondCtaLabel": {
+          "type": "string"
+        },
+        "statementEyebrow": {
+          "type": "string"
+        },
+        "statementIntro": {
+          "type": "string"
+        },
+        "statementHighlight": {
+          "type": "string"
+        },
+        "statementSuffix": {
+          "type": "string"
+        },
+        "statementText": {
+          "type": "string"
+        },
+        "talents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "number": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string"
+              },
+              "color": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "number",
+              "title",
+              "text",
+              "color"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "closingEyebrow": {
+          "type": "string"
+        },
+        "closingTitle": {
+          "type": "string"
+        },
+        "closingEm": {
+          "type": "string"
+        },
+        "closingText": {
+          "type": "string"
+        },
+        "footerText": {
+          "type": "string"
+        },
+        "headline": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "buttonText": {
+          "type": "string"
+        },
+        "backLink": {
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

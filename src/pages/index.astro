@@ -1,26 +1,19 @@
 ---
+import { getEntry } from 'astro:content';
 import '../styles/global.css';
+import HeroSection from '../components/HeroSection.astro';
+import StatementSection from '../components/StatementSection.astro';
+import TalentGrid from '../components/TalentGrid.astro';
+import ClosingSection from '../components/ClosingSection.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 
-const talents = [
-  {
-    number: '01',
-    title: 'Uitleggen als een superkracht',
-    text: 'Moeilijke dingen worden opeens logisch. En soms zelfs een beetje grappig.',
-    color: 'sunny'
-  },
-  {
-    number: '02',
-    title: 'Iedereen laten groeien',
-    text: 'Meester Joke ziet wat jij al kunt en helpt je ontdekken wat er nog meer in je zit.',
-    color: 'sky'
-  },
-  {
-    number: '03',
-    title: 'De klas laten stralen',
-    text: 'Met aandacht, geduld en een flinke dosis plezier voelt leren als een avontuur.',
-    color: 'mint'
-  }
-];
+const homePage = await getEntry({ collection: 'pages', id: 'home' });
+
+if (!homePage) {
+  throw new Error('Home page content not found');
+}
+
+const content = homePage.data;
 ---
 
 <!doctype html>
@@ -29,80 +22,44 @@ const talents = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content="Een vrolijke ode aan meester Joke." />
-    <title>Mijn meester is te goed voor deze wereld</title>
+    <title>{content.title}</title>
   </head>
   <body>
     <main>
-      <section class="hero" aria-labelledby="page-title">
-        <div class="hero__scribble" aria-hidden="true">✦</div>
-        <nav class="topbar" aria-label="Hoofdnavigatie">
-          <a class="brand" href="#top" aria-label="Naar boven">
-            <span class="brand__dot"></span>
-            <span>De klas van meester Joke</span>
-          </a>
-          <a class="topbar__link" href="#waarom">Waarom zo bijzonder? <span aria-hidden="true">↓</span></a>
-        </nav>
+      <HeroSection
+        eyebrow={content.heroEyebrow}
+        titleLine1={content.heroTitleLine1}
+        titleEm={content.heroTitleEm}
+        titleLine2={content.heroTitleLine2}
+        titleLine3={content.heroTitleLine3}
+        intro={content.heroIntro}
+        primaryCta={content.primaryCta}
+        primaryHref="#waarom"
+        secondaryCta={content.secondaryCta}
+        secondaryHref="/cadeau"
+        secondaryLabel={content.secondCtaLabel}
+      />
 
-        <div class="hero__content" id="top">
-          <div class="hero__copy">
-            <p class="eyebrow">Een kleine ode met een grote glimlach</p>
-            <h1 id="page-title">Mijn meester is<br /><em>te goed</em> voor<br />deze wereld.</h1>
-            <p class="hero__intro">Sommige meesters geven les. Meester Joke geeft je zin om morgen weer naar school te gaan.</p>
-            <div class="hero__actions">
-              <a class="button button--dark" href="#waarom">Ontdek waarom <span aria-hidden="true">↘</span></a>
-              <a class="button button--light birthday-button" href="/cadeau">ik ben jarig! <span aria-hidden="true">🎉</span></a>
-            </div>
-          </div>
-          <div class="hero__art" aria-label="Een getekende ster met een glimlach" role="img">
-            <div class="sun-rays sun-rays--one"></div>
-            <div class="sun-rays sun-rays--two"></div>
-            <div class="star">★<span class="star__face">•‿•</span></div>
-            <span class="doodle doodle--heart">♥</span>
-            <span class="doodle doodle--sparkle">✦</span>
-            <span class="doodle doodle--arrow">↗</span>
-            <p class="art-note">hier woont<br />veel talent!</p>
-          </div>
-        </div>
-        <div class="scroll-note"><span class="scroll-note__line"></span> scroll rustig verder</div>
-      </section>
+      <StatementSection
+        sectionNumber="01"
+        sectionLabel="Het geheim"
+        eyebrow={content.statementEyebrow}
+        highlight={content.statementHighlight}
+        suffix={content.statementSuffix}
+        text={content.statementText}
+      />
 
-      <section class="statement" id="waarom" aria-labelledby="statement-title">
-        <div class="section-label">01 <span>Het geheim</span></div>
-        <div class="statement__content">
-          <p class="eyebrow eyebrow--coral">Er zijn leraren...</p>
-          <h2 id="statement-title">...en er zijn <span>meesters</span> die de wereld een stukje leuker maken.</h2>
-          <p>Je merkt het aan de kleine dingen: een uitleg die blijft hangen, een grap op precies het goede moment en iemand die altijd in je gelooft.</p>
-        </div>
-        <div class="tape" aria-hidden="true">WAARSCHUWING: VEEL LIEFDE</div>
-      </section>
+      <TalentGrid talents={content.talents} />
 
-      <section class="talents" aria-labelledby="talents-title">
-        <div class="section-heading">
-          <div class="section-label">02 <span>De meester-mix</span></div>
-          <h2 id="talents-title">Superkrachten<br /><em>in het wild.</em></h2>
-        </div>
-        <div class="talent-grid">
-          {talents.map((talent) => (
-            <article class:list={['talent-card', `talent-card--${talent.color}`]}>
-              <span class="talent-card__number">{talent.number}</span>
-              <div class="talent-card__icon" aria-hidden="true">{talent.number === '01' ? '✎' : talent.number === '02' ? '↗' : '♥'}</div>
-              <h3>{talent.title}</h3>
-              <p>{talent.text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section class="closing" aria-labelledby="closing-title">
-        <div class="closing__badge" aria-hidden="true">★<span>10/10<br />meester</span></div>
-        <div class="section-label section-label--light">03 <span>De conclusie</span></div>
-        <h2 id="closing-title">Dank je wel,<br /><em>meester Joke!</em></h2>
-        <p>Voor elke glimlach, elk goed idee en elk moment waarop je ons liet voelen: dit kunnen wij.</p>
-        <button class="button button--light" id="compliment-button" type="button">Geef een high five <span aria-hidden="true">✋</span></button>
-        <p class="compliment" id="compliment" aria-live="polite"></p>
-      </section>
+      <ClosingSection
+        sectionLabel="De conclusie"
+        title={content.closingTitle}
+        emphasis={content.closingEm}
+        text={content.closingText}
+      />
     </main>
-    <footer>Gemaakt met bewondering door de klas <span aria-hidden="true">✦</span></footer>
+
+    <SiteFooter text={content.footerText} />
 
     <script>
       const button = document.querySelector('#compliment-button');

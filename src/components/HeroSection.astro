@@ -1,0 +1,56 @@
+---
+import ButtonLink from './ButtonLink.astro';
+
+const {
+  eyebrow,
+  titleLine1,
+  titleEm,
+  titleLine2,
+  titleLine3,
+  intro,
+  primaryCta,
+  primaryHref,
+  secondaryCta,
+  secondaryHref,
+  secondaryLabel,
+} = Astro.props;
+---
+
+<section class="hero" aria-labelledby="page-title">
+  <div class="hero__scribble" aria-hidden="true">✦</div>
+  <nav class="topbar" aria-label="Hoofdnavigatie">
+    <a class="brand" href="#top" aria-label="Naar boven">
+      <span class="brand__dot"></span>
+      <span>De klas van meester Joke</span>
+    </a>
+    <a class="topbar__link" href="#waarom">Waarom zo bijzonder? <span aria-hidden="true">↓</span></a>
+  </nav>
+
+  <div class="hero__content" id="top">
+    <div class="hero__copy">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1 id="page-title">
+        {titleLine1}<br />
+        <em>{titleEm}</em> {titleLine2}<br />
+        {titleLine3}
+      </h1>
+      <p class="hero__intro">{intro}</p>
+      <div class="hero__actions">
+        <ButtonLink href={primaryHref} label={primaryCta} icon="↘" variant="dark" />
+        <ButtonLink href={secondaryHref} label={secondaryCta} icon={secondaryLabel} variant="light" extraClass="birthday-button" />
+      </div>
+    </div>
+
+    <div class="hero__art" aria-label="Een getekende ster met een glimlach" role="img">
+      <div class="sun-rays sun-rays--one"></div>
+      <div class="sun-rays sun-rays--two"></div>
+      <div class="star">★<span class="star__face">•‿•</span></div>
+      <span class="doodle doodle--heart">♥</span>
+      <span class="doodle doodle--sparkle">✦</span>
+      <span class="doodle doodle--arrow">↗</span>
+      <p class="art-note">hier woont<br />veel talent!</p>
+    </div>
+  </div>
+
+  <div class="scroll-note"><span class="scroll-note__line"></span> scroll rustig verder</div>
+</section>

@@ -1,0 +1,12 @@
+---
+const { sectionLabel, title, emphasis, text } = Astro.props;
+---
+
+<section class="closing" aria-labelledby="closing-title">
+  <div class="closing__badge" aria-hidden="true">★<span>10/10<br />meester</span></div>
+  <div class="section-label section-label--light">03 <span>{sectionLabel}</span></div>
+  <h2 id="closing-title">{title}<br /><em>{emphasis}</em></h2>
+  <p>{text}</p>
+  <button class="button button--light" id="compliment-button" type="button">Geef een high five <span aria-hidden="true">✋</span></button>
+  <p class="compliment" id="compliment" aria-live="polite"></p>
+</section>

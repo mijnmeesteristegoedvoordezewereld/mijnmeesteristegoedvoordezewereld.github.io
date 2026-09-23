@@ -1,0 +1,14 @@
+---
+const {
+  href,
+  label,
+  variant = 'dark',
+  icon = null,
+  extraClass = '',
+} = Astro.props;
+---
+
+<a class:list={['button', `button--${variant}`, extraClass]} href={href}>
+  {label}
+  {icon && <span aria-hidden="true">{icon}</span>}
+</a>

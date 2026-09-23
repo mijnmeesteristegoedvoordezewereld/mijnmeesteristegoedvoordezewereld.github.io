@@ -1,0 +1,23 @@
+---
+const { talents } = Astro.props;
+---
+
+<section class="talents" aria-labelledby="talents-title">
+  <div class="section-heading">
+    <div class="section-label">02 <span>De meester-mix</span></div>
+    <h2 id="talents-title">Superkrachten<br /><em>in het wild.</em></h2>
+  </div>
+
+  <div class="talent-grid">
+    {talents.map((talent) => (
+      <article class:list={['talent-card', `talent-card--${talent.color}`]}>
+        <span class="talent-card__number">{talent.number}</span>
+        <div class="talent-card__icon" aria-hidden="true">
+          {talent.number === '01' ? '✎' : talent.number === '02' ? '↗' : '♥'}
+        </div>
+        <h3>{talent.title}</h3>
+        <p>{talent.text}</p>
+      </article>
+    ))}
+  </div>
+</section>
